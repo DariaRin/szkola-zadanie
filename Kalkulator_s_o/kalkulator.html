@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator średniej ocen</title>
+</head>
+<body>
+
+<h2>Kalkulator średniej ocen</h2>
+
+<p>Wpisz oceny oddzielone przecinkami (np. 5, 3, 6, 4)(NIE 5,3,6,4):</p>
+
+<input type="text" id="oceny" style="width: 300px;">
+<button onclick="oblicz()">Oblicz średnią</button>
+
+<p id="wynik" style="font-weight: bold; margin-top: 20px;"></p>
+
+<script>
+function oblicz() {
+
+    let tekst = document.getElementById("oceny").value.trim();
+
+    if (tekst === "") {
+        document.getElementById("wynik").textContent = "Błąd: nic nie wpisano.";
+        return;
+    }
+
+    let lista = tekst.split(",");
+
+    let suma = 0;
+    let licznik = 0;
+
+    for (let element of lista) {
+        let ocena = Number(element.trim());
+
+        if (isNaN(ocena) || ocena < 1 || ocena > 6) {
+            document.getElementById("wynik").textContent =
+                "Błąd: oceny muszą być liczbami całkowitymi od 1 do 6.";
+            return;
+        }
+
+        suma += ocena;
+        licznik++;
+    }
+
+    let srednia = suma / licznik;
+
+    document.getElementById("wynik").textContent =
+        "Średnia: " + srednia.toFixed(2);
+}
+</script>
+
+</body>
+</html>

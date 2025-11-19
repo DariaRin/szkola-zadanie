@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planer zadań</title>
+    <link rel="stylesheet" href="styl.css" class="style">
+</head>
+<body>
+ 
+<aside id="bok">
+    <img src="obraz.jpg" alt="notatki">
+</aside>
+
+<header id="naglowek">
+    <h2>Moje zadania</h2>
+</header>
+
+<nav id="nawigacja">
+    <input type="text" id="pole" placeholder="Dodaj zadanie...">
+    <button onclick="dodajZadanie()">Dodaj</button>
+</nav>
+
+<main id="glowny">
+    <ul id="lista">
+        <li>Zakupy <button onclick="wykonane(this)">Wykonane</button></li>
+        <li>Gimnastyka <button onclick="wykonane(this)">Wykonane</button></li>
+        <li>Nauka JS <button onclick="wykonane(this)">Wykonane</button></li>
+        <li>Projekt na zajęcia <button onclick="wykonane(this)">Wykonane</button></li>
+        <li>Kwiaty <button onclick="wykonane(this)">Wykonane</button></li>
+        <li>Sprzątanie <button onclick="wykonane(this)">Wykonane</button></li>
+    </ul>
+</main>
+
+<script>
+    function wykonane(btn) {
+    let element = btn.parentElement;
+    element.style.textDecoration = "line-through";
+}
+
+function dodajZadanie() {
+    let pole = document.getElementById("pole");
+    let tekst = pole.value.trim();
+
+    if (tekst === "") return;
+
+    let lista = document.getElementById("lista");
+
+    let nowy = document.createElement("li");
+    nowy.textContent = tekst + " ";
+
+    let btn = document.createElement("button");
+    btn.textContent = "Wykonane";
+    btn.onclick = function () { wykonane(btn); };
+
+    nowy.appendChild(btn);
+    lista.appendChild(nowy);
+
+    pole.value = "";
+}
+
+</script>
+
+<footer id="stopka">
+    <h3>Notatki: Horbenko Daria 3C</h3>
+</footer>
+
+</body>
+</html>
